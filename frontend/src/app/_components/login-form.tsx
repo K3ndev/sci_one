@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useFormState } from 'react-dom';
-import { login, signup } from "../actions";
+import { login, signup } from "../login/actions";
 import React from 'react';
 
 
