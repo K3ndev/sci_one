@@ -14,8 +14,10 @@ export async function login(_: unknown, formData: FormData): Promise<{ error: st
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
-  if (error) {
-    redirect('/error');
+  if (error?.status) {
+    return {
+      error: error.status.toString()
+    }
   }
 
   revalidatePath('/', 'layout');
@@ -25,8 +27,6 @@ export async function login(_: unknown, formData: FormData): Promise<{ error: st
 export async function signup(_: unknown, formData: FormData): Promise<{ error: string | null }> {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
@@ -50,8 +50,10 @@ export async function signup(_: unknown, formData: FormData): Promise<{ error: s
 
   const { error } = await supabase.auth.signUp(data);
 
-  if (error) {
-    redirect('/error');
+  if (error?.status) {
+    return {
+      error: error.status.toString()
+    }
   }
 
   revalidatePath('/', 'layout');

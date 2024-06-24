@@ -17,34 +17,40 @@ export default function LoginForm() {
 
   const [isLogin, setIsLogin] = useState(true);
 
+  const toggleLogin = () => {
+    setIsLogin(!isLogin)
+    loginState.error = null
+    signupState.error = null
+  }
+
   return (
     <>
       {isLogin ? (
         <form action={formLogin} className="flex w-60 flex-col">
           <label htmlFor="email">Email:</label>
-          <input id="email" name="email" type="email" required />
+          <input id="email" name="email" type="text" required />
           <label htmlFor="password">Password:</label>
-          <input id="password" name="password" type="password" required />
+          <input id="password" name="password" type="password" />
           <button type="submit" className="bg-red-800 text-black">
             Log in
           </button>
-          <p className="my-2 text-red-900">{loginState.error}</p>
+          <p className="my-2 text-red-900">error: {loginState.error}</p>
         </form>
       ) : (
         <form action={formSignup} className="flex w-60 flex-col">
           <label htmlFor="email">Email:</label>
-          <input id="email" name="email" type="email" required />
+          <input id="email" name="email" type="text" required />
           <label htmlFor="password">Password:</label>
           <input id="password" name="password" type="password" required />
           <button type="submit" className="bg-red-800 text-black">
             Sign up
           </button>
-          <p className="my-2 text-red-900">{signupState.error}</p>
+          <p className="my-2 text-red-900">error: {signupState.error}</p>
         </form>
       )}
 
       <div>
-        <button onClick={() => setIsLogin(!isLogin)}>toggle sign in/up</button>
+        <button onClick={toggleLogin}>toggle sign in/up</button>
       </div>
     </>
   );
