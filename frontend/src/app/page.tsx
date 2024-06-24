@@ -1,8 +1,8 @@
 import { Center, Box } from '@mantine/core';
 import { createClient } from "../utils/supabase/server"
 import { redirect } from 'next/navigation';
-import LayoutShell from "./components/layout"
-import SignOutButton from "./components/logout/logoutButton"
+import LayoutShell from "./_components/layout"
+import SignOutButton from "./_components/logout/logoutButton"
 
 export default async function Home() {
   const supabase = createClient();
