@@ -1,6 +1,8 @@
 import { Center, Box } from '@mantine/core';
 import { createClient } from "../utils/supabase/server"
 import { redirect } from 'next/navigation';
+import LayoutShell from "./components/layout"
+import SignOutButton from "./components/logout/logoutButton"
 
 export default async function Home() {
   const supabase = createClient();
@@ -10,11 +12,13 @@ export default async function Home() {
   }
 
   return (
-    <main>
-       <Center maw={400} h={100} bg="var(--mantine-color-gray-light)">
-        <Box bg="var(--mantine-color-blue-light)">Main Dashboard</Box>
-      </Center>
-    </main>
+    <LayoutShell>
+      <Center maw={400} h={100} bg="var(--mantine-color-gray-light)">
+          <Box bg="var(--mantine-color-blue-light)">Main Dashboard</Box>
+       </Center>
+       <p>Hello {data.user.email}</p>
+       <SignOutButton />
+    </LayoutShell>
   );
 }
 
