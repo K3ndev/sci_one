@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { checkAction } from '../_action/check-action';
-import { editTodo } from '../_action/editTodo';
-import { deleteTodo } from '../_action/removeTodo-action';
+import { checkAction } from '../_action/check';
+import { editTodo } from '../_action/edit-todo';
+import { deleteTodo } from '../_action/remove-todo';
 import { useProfileStore } from "../_stores/use-profile"
 
 export default function TodoItem({ isCheck, id, todo, user_id }: { isCheck: boolean; id: number; todo: string , user_id: string}) {

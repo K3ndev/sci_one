@@ -1,6 +1,6 @@
 'use client';
 import React from "react";
-import { SignOut } from "./signOut-action";
+import { SignOut } from "./signout-action";
 
 export default function SignOutButton() {
   return (

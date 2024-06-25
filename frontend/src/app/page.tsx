@@ -4,8 +4,8 @@ import { redirect } from 'next/navigation';
 import Nav from "../app/_components/nav"
 import TodoItem from "./_components/todo"
 import { AddTodo } from './_action/add-todo';
-import PaginationButton from "./_components/paginationButton"
-import {getPagination} from "./_utils/getPagination"
+import PaginationButton from "./_components/pagination-button"
+import {getPagination} from "./_utils/get-pagination"
 
 type SearchParamsType = {
   [key: string]: string;
