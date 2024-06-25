@@ -23,3 +23,4 @@ Note: We will always do file processing, and other “heavy computation” tasks
 Other: 
 [x]: validation for form when signup
 [x]: pagination using url
+[x]: signout
