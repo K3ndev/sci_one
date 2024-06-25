@@ -11,7 +11,7 @@ Section 1: Nextjs, Supabase
 Section 2: Nextjs, Supabase
 [ ] Populate todolist with 10,000 fake data todo’s.
 [x] Pagination
-[ ] Allow all users to upload a profile picture for their avatar.
+[x] Allow all users to upload a profile picture for their avatar.
 
 Section 3: Add Express
 Note: We will always do file processing, and other “heavy computation” tasks, on Express.
