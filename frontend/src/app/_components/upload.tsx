@@ -18,11 +18,9 @@ export default function Upload(){
 
     const uploadButton = async () => {
       if (file && currentUser.id) {
-          // const base64 = await convertToBase64(file);
           uploadImage({ user_id: currentUser.id, file });
       }
     };
-
 
     return (
         <div>
