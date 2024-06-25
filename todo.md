@@ -19,3 +19,7 @@ Note: We will always do file processing, and other “heavy computation” tasks
 [ ] Express converts resumes to text.
 [ ] Express sends text to Supabase Database.
 [ ] Admin can write a keyword, and all resumes with that keyword will be returned in a list.
+
+Other: 
+[x]: validation for form when signup
+[x]: pagination using url
