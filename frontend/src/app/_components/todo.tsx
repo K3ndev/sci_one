@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { checkAction } from '../_action/check-action';
 import { editTodo } from '../_action/editTodo';
 import { deleteTodo } from '../_action/removeTodo-action';
+import { useProfileStore } from "../_stores/use-profile"
 
-export default function TodoItem({ isCheck, id, todo }: { isCheck: boolean; id: number; todo: string }) {
+export default function TodoItem({ isCheck, id, todo, user_id }: { isCheck: boolean; id: number; todo: string , user_id: string}) {
   const [editMode, setEditMode] = useState(false);
   const [editedTodo, setEditedTodo] = useState(todo);
+  const { currentUser } = useProfileStore()
 
   const handleEdit = () => {
     setEditMode(true);
@@ -39,7 +41,7 @@ export default function TodoItem({ isCheck, id, todo }: { isCheck: boolean; id: 
       {editMode ? (
         <input type="text" value={editedTodo} onChange={handleInputChange} />
       ) : (
-        <p>{todo}</p>
+        <p>{todo}, id: {user_id}</p>
       )}
       {editMode ? (
         <>

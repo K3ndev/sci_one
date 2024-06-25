@@ -15,14 +15,14 @@ export default async function Home() {
   const { data: todos } = await supabase.from('todos').select('*');
   return (
       <>
-        <Nav email={data.user?.email} />
+        <Nav email={data.user?.email} id={data.user?.id}/>
         <main>
             <Box bg="var(--mantine-color-blue-light)">
             <ul>
               {todos?.map((item, index: number) => {
                 return (
                   <li key={index} className="mb-1 flex gap-2">
-                    <TodoItem id={item.id} isCheck={item.isCheck} todo={item.todo} />
+                    <TodoItem id={item.id} isCheck={item.isCheck} todo={item.todo} user_id={item.user_id}/>
                   </li>
                 );
               })}

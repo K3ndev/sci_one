@@ -48,11 +48,24 @@ export async function signup(_: unknown, formData: FormData): Promise<{ error: s
     };
   }
 
-  const { error } = await supabase.auth.signUp(data);
-
+  const { error, data: user } = await supabase.auth.signUp(data);
+        
   if (error?.status) {
     return {
       error: error.status.toString()
+    }
+  }
+
+  const { error: err } = await supabase
+  .from('user')
+  .insert([
+    { id:  user.user?.id, role: "member" },
+  ])
+  .select()
+
+  if (err?.code) {
+    return {
+      error: err.code.toString()
     }
   }
 
