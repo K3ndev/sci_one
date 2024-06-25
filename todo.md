@@ -24,3 +24,4 @@ Other:
 [x]: validation for form when signup
 [x]: pagination using url
 [x]: signout
+[]: access control for (frontend, backend(in every request || use cache))

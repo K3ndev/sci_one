@@ -20,7 +20,7 @@ export default async function Home({searchParams}: {searchParams: SearchParamsTy
 
   // pagination
   const { from, to } = getPagination(+searchParams.page || 0, 1);
-  const { data: todos } = await supabase.from('todos').select('*').range(from, to);
+  const { data: todos } = await supabase.from('todos').select('*').range(from, to).order('id', { ascending: true });;
 
   return (
       <>
