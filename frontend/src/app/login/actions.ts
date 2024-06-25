@@ -72,3 +72,9 @@ export async function signup(_: unknown, formData: FormData): Promise<{ error: s
   revalidatePath('/', 'layout');
   redirect('/');
 }
+
+// select * from auth.users;
+
+// UPDATE auth.users
+// SET role = 'admin'
+// WHERE email = 'racelisjk@gmail.com';
