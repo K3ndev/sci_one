@@ -1,9 +1,10 @@
 'use server';
 
+import { SearchParamsType } from '@/app/_type/search-param';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
-export const AddTodo = async (_: unknown, formData: FormData): Promise<{ error: string | null }> => {
+export const AddTodo = async (searchParams: SearchParamsType, formData: FormData) => {
   const newTodo = formData.get('newTodo');
   const supabase = createClient()
 
@@ -12,11 +13,8 @@ export const AddTodo = async (_: unknown, formData: FormData): Promise<{ error: 
     .insert([{ todo: newTodo }])
     .select();
 
-  if (error) {
-    return {
-      error: error.toString(),
-    }
-  }
+  const params = new URLSearchParams();
+  if (searchParams.page) params.append('page', searchParams.page);
 
-  return redirect('/');
+  return redirect(`/?${params.toString()}`);
 };

@@ -47,7 +47,7 @@ export default async function Home({
             );
           })}
         </ul>
-        <AddTodoForm />
+        <AddTodoForm searchParams={searchParams}/>
         <PaginationButton searchParams={searchParams}/>
       </main>
     </>
