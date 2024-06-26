@@ -18,7 +18,7 @@ export default function PaginationButton ({searchParams} : {searchParams: Search
     }
 
     const prev = () => {
-        if (page < 0) {
+        if (page <= 0) {
             const params = new URLSearchParams();
             params.append('page', '0');
             setPage(0)
