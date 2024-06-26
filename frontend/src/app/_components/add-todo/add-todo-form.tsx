@@ -17,8 +17,6 @@ export default function AddTodoForm (){
     }
   }, [addTodoState])
 
-  console.log(addTodoState)
-
     return (
         <form action={formAddTodo}>
           <input type="text" name="newTodo" placeholder="add new todo here" ref={newTodoInputRef}/>
