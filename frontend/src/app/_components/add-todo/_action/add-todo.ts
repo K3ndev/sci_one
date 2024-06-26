@@ -3,7 +3,7 @@
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
-export const AddTodo = async (formData: FormData) => {
+export const AddTodo = async (_: unknown, formData: FormData): Promise<{ error: string | null }> => {
   const newTodo = formData.get('newTodo');
   const supabase = createClient()
 
@@ -13,7 +13,9 @@ export const AddTodo = async (formData: FormData) => {
     .select();
 
   if (error) {
-    return redirect('/error');
+    return {
+      error: error.toString(),
+    }
   }
 
   return redirect('/');

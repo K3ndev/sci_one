@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
 import Nav from "./_components/nav/nav";
 import TodoItem from "./_components/todo-list/todo";
-import { AddTodo } from "./_action/add-todo";
 import PaginationButton from "./_components/pagination-button";
 import { getPagination } from "./_utils/get-pagination";
 import { createClient } from "@/utils/supabase/server";
+import AddTodoForm from "./_components/add-todo/add-todo-form";
 
 type SearchParamsType = {
   [key: string]: string;
@@ -47,12 +47,7 @@ export default async function Home({
             );
           })}
         </ul>
-        <form action={AddTodo}>
-          <input type="text" name="newTodo" placeholder="add new todo here" />
-          <button type="submit" className="bg-red-800 text-black">
-            submit
-          </button>
-        </form>
+        <AddTodoForm />
         <PaginationButton />
       </main>
     </>
