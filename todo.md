@@ -25,6 +25,7 @@ Other:
 - [x] pagination using url
 - [x] signout
 - [x] creating an account will trigger a function to add a data inside of user table (and add default value like their role as member)
+- [x] with pageparam.page is on, it should not remove while doing crud fn on todo
 
 
 ## trigger functions:
