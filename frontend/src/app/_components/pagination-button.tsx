@@ -18,8 +18,12 @@ export default function PaginationButton ({searchParams} : {searchParams: Search
     }
 
     const prev = () => {
-        if (page === 0) {
-            return
+        if (page < 0) {
+            const params = new URLSearchParams();
+            params.append('page', '0');
+            setPage(0)
+            router.push(`?${params.toString()}`, { scroll: false });
+            return 
         }
         const newPage = page - 2;
         setPage(newPage);
