@@ -17,7 +17,7 @@
 Note: We will always do file processing, and other “heavy computation” tasks, on Express.
 - [x] Users upload their resumes to express (1 or more).
 - [x] Express converts resumes to text.
-- [ ] Express sends text to Supabase Database.
+- [x] Express sends text to Supabase Database.
 - [ ] Admin can write a keyword, and all resumes with that keyword will be returned in a list.
 
 Other: 

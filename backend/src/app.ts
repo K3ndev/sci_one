@@ -3,10 +3,16 @@ import multer from "multer"
 import cors from 'cors'
 import pdf from 'pdf-parse'
 import fs from 'fs'
+import { addResume } from './utils/supabase';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+const port = process.env.PORT;
+
 
 const app = express();
 
-const port = 4000;
 
 app.use(cors());
 
@@ -52,14 +58,14 @@ app.post('/api/upload', upload.single('resume'), async(req, res) => {
     }
 
     const filePath = req.file.path;
-    console.log(filePath)
     const dataBuffer = fs.readFileSync(filePath);
-    const fileText = dataBuffer.toString('utf8');
     const pdfData = await pdf(dataBuffer)
 
-    console.log(pdfData.text)
     const foundKeywords = findKeywords(pdfData.text, keywords);
-    console.log(foundKeywords)
+
+    // // store the filepath and keywords into supabase
+    addResume({foundKeywords, filePath})
+
 
     res.send('Upload successful');
   } catch(error){
