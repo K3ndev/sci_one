@@ -24,7 +24,7 @@ export default function TodoItem({ isCheck, id, todo, user_id, searchParams }: {
   };
 
   const handleSaveEdit = async (targetId: number, newTodo: string) => {
-    await editTodo(targetId, newTodo);
+    await editTodo(targetId, newTodo, searchParams);
     setEditMode(false);
   };
 
