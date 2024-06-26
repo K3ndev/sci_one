@@ -24,6 +24,26 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
+// keywords
+const keywords = ['javascript', 'typescript', 'supabase', 'next.js', 'mantine', 'express.js', 'docker']
+function findKeywords(text: string, keywords: string[]) {
+  const foundKeywords = [] as string[] ;
+
+  // Convert text to lowercase for case-insensitive search
+  const lowerCaseText = text.toLowerCase();
+
+  // Check each keyword
+  keywords.forEach((keyword: string) => {
+    const lowerCaseKeyword = keyword.toLowerCase();
+    // Check if keyword is found in text
+    if (lowerCaseText.includes(lowerCaseKeyword)) {
+      foundKeywords.push(keyword);
+    }
+  });
+
+  return foundKeywords;
+}
+
 app.post('/api/upload', upload.single('resume'), async(req, res) => {
   try {
     
@@ -37,7 +57,9 @@ app.post('/api/upload', upload.single('resume'), async(req, res) => {
     const fileText = dataBuffer.toString('utf8');
     const pdfData = await pdf(dataBuffer)
 
-    console.log(pdfData)
+    console.log(pdfData.text)
+    const foundKeywords = findKeywords(pdfData.text, keywords);
+    console.log(foundKeywords)
 
     res.send('Upload successful');
   } catch(error){
