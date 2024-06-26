@@ -61,7 +61,7 @@ export default function TodoItem({ isCheck, id, todo, user_id, searchParams }: {
         </button>
       )}
 
-      <button onClick={async () => deleteTodo(id)}>
+      <button onClick={async () => deleteTodo(id, searchParams)}>
         remove
       </button>
     </>
