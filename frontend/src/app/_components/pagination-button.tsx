@@ -1,8 +1,9 @@
 "use client"
 import { useRouter } from 'next/navigation';
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import { SearchParamsType } from '../_type/search-param';
 
-export default function PaginationButton (){
+export default function PaginationButton ({searchParams} : {searchParams: SearchParamsType}){
     const router = useRouter();
     const [page, setPage] = useState<number>(0)
 
@@ -28,6 +29,15 @@ export default function PaginationButton (){
 
         router.push(`?${params.toString()}`, { scroll: false });
     }
+
+    useEffect(() => {
+        if (typeof window !== 'undefined' && searchParams) {
+            if (searchParams.page){
+                setPage(+searchParams.page)
+            }
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])    
 
     return (
         <div>
