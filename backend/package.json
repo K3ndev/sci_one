@@ -1,5 +1,5 @@
 {
-	"type": "module",
+	"type": "commonjs",
 	"dependencies": {
 		"cors": "^2.8.5",
 		"dotenv": "^16.4.5",
@@ -21,7 +21,9 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "tsx watch src/app.ts"
+		"dev": "tsx watch src/app.ts",
+		"build": "tsc --outDir dist",
+		"start": "node dist/app.js"
 	},
 	"keywords": [],
 	"author": "",

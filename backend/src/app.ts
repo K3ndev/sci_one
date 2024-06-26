@@ -16,15 +16,34 @@ app.use(express.json());
 // multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'resume/')
+    cb(null, 'uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
 })
 const upload = multer({ storage })
-app.post('/api/upload', upload.single('resume'), (req, res) => {
-  res.send('Upload successful');
+
+app.post('/api/upload', upload.single('resume'), async(req, res) => {
+  try {
+    
+    if (!req.file) {
+      throw new Error('error');
+    }
+
+    const filePath = req.file.path;
+    console.log(filePath)
+    const dataBuffer = fs.readFileSync(filePath);
+    const fileText = dataBuffer.toString('utf8');
+    const pdfData = await pdf(dataBuffer)
+
+    console.log(pdfData)
+
+    res.send('Upload successful');
+  } catch(error){
+    console.error('Upload error:', error);
+    res.status(500).send('Upload failed');
+  }
 });
 
 
