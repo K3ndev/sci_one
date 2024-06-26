@@ -1,10 +1,11 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { createClient } from '../../utils/supabase/server';
+import { createClient } from '@/utils/supabase/server';
 
 export const editTodo = async (targetId: number, newTodo: string) => {
-  const supabase = createClient();
+  const supabase = createClient()
+
   const { error } = await supabase
     .from('todos')
     .update({ todo: newTodo })

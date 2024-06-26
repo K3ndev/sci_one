@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useFormState } from 'react-dom';
-import { login, signup } from "../login/actions";
 import React from 'react';
+import { login, signup } from '../login/_actions/actions';
 
 export default function LoginForm() {
 

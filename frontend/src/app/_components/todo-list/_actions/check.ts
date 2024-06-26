@@ -1,10 +1,11 @@
 'use server';
 
+import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import { createClient } from '../../utils/supabase/server';
 
 export const checkAction = async (todoId: number, isCheck: boolean) => {
-  const supabase = createClient();
+
+  const supabase = createClient()
 
   const { data, error } = await supabase
     .from('todos')

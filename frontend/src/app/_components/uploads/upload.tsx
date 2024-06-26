@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from "react";
-import { uploadImage } from "../_hooks/upload-picture";
 import {useProfileStore} from "@/app/_stores/use-profile"
+import { uploadImage } from "./_hooks/upload-picture";
 
 export default function Upload(){
 

@@ -1,10 +1,10 @@
 'use client';
 
 import React, {useEffect} from 'react'
-import SignOutButton from "./logout-button"
-import {useProfileStore} from "../_stores/use-profile"
-import Upload from "../_components/upload"
-import { getProfileImage } from '../_hooks/get-profile-url';
+import SignOutButton from "../logout/logout-button"
+import {useProfileStore} from "../../_stores/use-profile"
+import Upload from "../uploads/upload"
+import { getProfileImage } from './_hooks/get-profile-url';
 
 export default  function Nav ({email, id}: {email: string | undefined, id : string | undefined}) {
 

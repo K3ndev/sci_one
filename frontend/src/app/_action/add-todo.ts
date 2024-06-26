@@ -1,11 +1,11 @@
 'use server';
 
+import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-import { createClient } from '../../utils/supabase/server';
 
 export const AddTodo = async (formData: FormData) => {
-  const supabase = createClient();
   const newTodo = formData.get('newTodo');
+  const supabase = createClient()
 
   const { error } = await supabase
     .from('todos')

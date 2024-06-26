@@ -1,15 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { checkAction } from '../_action/check';
-import { editTodo } from '../_action/edit-todo';
-import { deleteTodo } from '../_action/remove-todo';
-import { useProfileStore } from "../_stores/use-profile"
+import { editTodo } from './_actions/edit-todo';
+import { checkAction } from './_actions/check';
+import { deleteTodo } from './_actions/remove-todo';
 
 export default function TodoItem({ isCheck, id, todo, user_id }: { isCheck: boolean; id: number; todo: string , user_id: string}) {
   const [editMode, setEditMode] = useState(false);
   const [editedTodo, setEditedTodo] = useState(todo);
-  const { currentUser } = useProfileStore()
 
   const handleEdit = () => {
     setEditMode(true);

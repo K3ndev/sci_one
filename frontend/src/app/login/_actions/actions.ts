@@ -2,10 +2,12 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createClient } from '../../utils/supabase/server';
+import { createClient } from '@/utils/supabase/server';
+
 
 export async function login(_: unknown, formData: FormData): Promise<{ error: string | null }> {
-  const supabase = createClient();
+
+  const supabase = createClient()
 
   const data = {
     email: formData.get('email') as string,
@@ -25,7 +27,7 @@ export async function login(_: unknown, formData: FormData): Promise<{ error: st
 }
 
 export async function signup(_: unknown, formData: FormData): Promise<{ error: string | null }> {
-  const supabase = createClient();
+  const supabase = createClient()
 
   const data = {
     email: formData.get('email') as string,
@@ -56,25 +58,6 @@ export async function signup(_: unknown, formData: FormData): Promise<{ error: s
     }
   }
 
-  // const { error: err } = await supabase
-  // .from('user')
-  // .insert([
-  //   { id:  user.user?.id, role: "member" },
-  // ])
-  // .select()
-
-  // if (err?.code) {
-  //   return {
-  //     error: err.code.toString()
-  //   }
-  // }
-
   revalidatePath('/', 'layout');
   redirect('/');
 }
-
-// select * from auth.users;
-
-// UPDATE auth.users
-// SET role = 'admin'
-// WHERE email = 'racelisjk@gmail.com';

@@ -1,18 +1,19 @@
 import { Box } from '@mantine/core';
-import { createClient } from "../utils/supabase/server"
 import { redirect } from 'next/navigation';
-import Nav from "../app/_components/nav"
-import TodoItem from "./_components/todo"
+import Nav from "./_components/nav/nav"
+import TodoItem from "./_components/todo-list/todo"
 import { AddTodo } from './_action/add-todo';
 import PaginationButton from "./_components/pagination-button"
 import {getPagination} from "./_utils/get-pagination"
+import { createClient } from '@/utils/supabase/server';
+
 
 type SearchParamsType = {
   [key: string]: string;
 };
 
 export default async function Home({searchParams}: {searchParams: SearchParamsType}) {
-  const supabase = createClient();
+  const supabase = createClient()
   const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
     redirect('/login');
@@ -30,7 +31,7 @@ export default async function Home({searchParams}: {searchParams: SearchParamsTy
               <ul>
                 {todos?.map((item, index: number) => {
                   return (
-                    <li key={index} className="mb-1 flex gap-2">
+                    <li key={+index + +item.id} className="mb-1 flex gap-2">
                       <TodoItem id={item.id} isCheck={item.isCheck} todo={item.todo} user_id={item.user_id}/>
                     </li>
                   );
