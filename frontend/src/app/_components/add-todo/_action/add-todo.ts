@@ -16,5 +16,9 @@ export const AddTodo = async (searchParams: SearchParamsType, formData: FormData
   const params = new URLSearchParams();
   if (searchParams.page) params.append('page', searchParams.page);
 
+  if (error) {
+    return redirect('/error');
+  }
+
   return redirect(`/?${params.toString()}`);
 };

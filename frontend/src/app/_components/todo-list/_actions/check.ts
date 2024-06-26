@@ -2,10 +2,13 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import { SearchParamsType } from '@/app/_type/search-param';
 
-export const checkAction = async (todoId: number, isCheck: boolean) => {
+export const checkAction = async (todoId: number, isCheck: boolean, searchParams: SearchParamsType) => {
 
   const supabase = createClient()
+  const params = new URLSearchParams();
+  if (searchParams.page) params.append('page', searchParams.page);
 
   const { data, error } = await supabase
     .from('todos')
@@ -17,20 +20,5 @@ export const checkAction = async (todoId: number, isCheck: boolean) => {
     return redirect('/error');
   }
 
-  // // permission
-  // const { data: user, error: err } = await supabase
-  //   .from('user')
-  //   .select("*")
-  //   .eq('id', data[0].user_id)
-
-  // if (err) {
-  //   return redirect('/error');
-  // }
-
-
-  // console.log(user[0].role)
-
-  
-
-  return redirect('/');
+  return redirect(`/?${params.toString()}`);
 };

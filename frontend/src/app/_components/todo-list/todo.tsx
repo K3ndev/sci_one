@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { editTodo } from './_actions/edit-todo';
 import { checkAction } from './_actions/check';
 import { deleteTodo } from './_actions/remove-todo';
+import { SearchParamsType } from '@/app/_type/search-param';
 
-export default function TodoItem({ isCheck, id, todo, user_id }: { isCheck: boolean; id: number; todo: string , user_id: string}) {
+export default function TodoItem({ isCheck, id, todo, user_id, searchParams }: { isCheck: boolean; id: number; todo: string , user_id: string, searchParams: SearchParamsType}) {
   const [editMode, setEditMode] = useState(false);
   const [editedTodo, setEditedTodo] = useState(todo);
 
@@ -33,7 +34,7 @@ export default function TodoItem({ isCheck, id, todo, user_id }: { isCheck: bool
         type="checkbox"
         checked={isCheck}
         onChange={async () => {
-          checkAction(id, isCheck);
+          checkAction(id, isCheck, searchParams);
         }}
       />
       {editMode ? (

@@ -42,6 +42,7 @@ export default async function Home({
                   isCheck={item.isCheck}
                   todo={item.todo}
                   user_id={item.user_id}
+                  searchParams={searchParams}
                 />
               </li>
             );
