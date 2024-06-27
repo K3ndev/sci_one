@@ -1,9 +1,10 @@
 "use client";
 // temp use client
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useRef } from "react";
 
 export default function Resume() {
   const [file, setFile] = useState<File | null>(null);
+  const keywordsRef = useRef<HTMLInputElement>(null)
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -39,6 +40,27 @@ export default function Resume() {
       });
   };
 
+  const handleSearch = async () => {
+    const keywords = keywordsRef.current?.value;
+
+    if (!keywords) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:4000/search?keywords=${keywords}`);
+      if (!response.ok) {
+        throw new Error('error');
+      }
+      const data = await response.json();
+      console.log(data)
+      
+    } catch (error) {
+      console.error('error', error);
+    }
+  };
+    
+
   return (
     <div>
       <h2>File Upload</h2>
@@ -46,6 +68,11 @@ export default function Resume() {
       <button type="button" onClick={onClickHandler}>
         Upload
       </button>
+
+      <div>
+        <input type="text" ref={keywordsRef}/>
+        <button onClick={handleSearch}>search keywords</button>
+      </div>
     </div>
   );
 }

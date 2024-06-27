@@ -75,6 +75,18 @@ app.post('/api/upload', upload.single('resume'), async(req, res) => {
 });
 
 
+app.get('/search', (req, res) => {
+  const keywords = req.query.keywords;
+
+  if (!keywords) {
+    return res.status(400).json({ error: 'Keywords is required' });
+  }
+
+   
+  res.json({ keywords: keywords });
+});
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
