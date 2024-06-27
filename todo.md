@@ -1,8 +1,8 @@
 ## Section 1: Nextjs, Supabase
--  [x] Crud
+- [x] Crud
     - create, read, update, delete
--  [x] login
--  [ ] user role (admin, member)
+- [x] login
+- [ ] user role (admin, member)
     - An admin can CRUD todos.
     - A member can read only.
 - [x] Ensure routes are protected on API.
