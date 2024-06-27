@@ -18,12 +18,17 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@snaplet/copycat": "^5.0.0",
+    "@snaplet/seed": "0.97.20",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/uuid": "^10.0.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "postgres": "^3.4.4",
+    "supabase": "^1.178.2",
     "typescript": "^5"
   }
 }
