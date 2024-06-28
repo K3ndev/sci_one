@@ -3,11 +3,18 @@ import { useRouter } from 'next/navigation';
 import React, {useState, useEffect} from "react"
 import { SearchParamsType } from '../_type/search-param';
 
-export default function PaginationButton ({searchParams} : {searchParams: SearchParamsType}){
+export default function PaginationButton ({searchParams, todos} : {searchParams: SearchParamsType, todos: any[] | null}){
     const router = useRouter();
     const [page, setPage] = useState<number>(0)
 
+    console.log(todos?.length)
+
     const next = () => {
+
+        if(todos && todos?.length <= 1){
+            return
+        }
+
         const newPage = page + 2;
         setPage(newPage);
 

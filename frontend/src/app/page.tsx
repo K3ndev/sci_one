@@ -47,9 +47,10 @@ export default async function Home({
               </li>
             );
           })}
+          {todos?.length === 0 && <div>none</div>}
         </ul>
         <AddTodoForm searchParams={searchParams}/>
-        <PaginationButton searchParams={searchParams}/>
+        <PaginationButton searchParams={searchParams} todos={todos}/>
       </main>
     </>
   );
