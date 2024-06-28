@@ -42,3 +42,15 @@ from
   auth.users;
 
 GRANT INSERT, UPDATE, DELETE, SELECT ON ALL TABLES IN SCHEMA public TO admin;
+
+
+---
+
+alter policy "Enable ALL for users admin"
+on "public"."todos"
+to public
+using (
+  (EXISTS ( SELECT 1
+   FROM "user"
+  WHERE (("user".id = ( SELECT auth.uid() AS uid)) AND ("user".role = 'admin'::text))))
+);
