@@ -6,7 +6,8 @@
     - An admin can CRUD todos.
     - A member can read only.
 - [x] Ensure routes are protected on API.
-- [x] Ensure tables have appropriate RLS policies.
+- [ ] Ensure tables have appropriate RLS policies.
+  - in using express, we need to pass the the jwt from frontend to express then supabase to make sure that we are authenticated
 
 ## Section 2: Nextjs, Supabase
 - [ ] Populate todolist with 10,000 fake data todo’s.
