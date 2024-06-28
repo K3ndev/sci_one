@@ -3,7 +3,7 @@ import multer from "multer"
 import cors from 'cors'
 import pdf from 'pdf-parse'
 import fs from 'fs'
-import { addResume } from './utils/supabase';
+import { addResume, searchKeywords } from './utils/supabase';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
@@ -61,10 +61,9 @@ app.post('/api/upload', upload.single('resume'), async(req, res) => {
     const dataBuffer = fs.readFileSync(filePath);
     const pdfData = await pdf(dataBuffer)
 
-    const foundKeywords = findKeywords(pdfData.text, keywords);
+    const foundKeywords = findKeywords(pdfData.text, keywords).join(' ')
 
-    // // store the filepath and keywords into supabase
-    addResume({foundKeywords, filePath})
+    addResume({text: foundKeywords, filePath})
 
 
     res.send('Upload successful');
@@ -75,15 +74,17 @@ app.post('/api/upload', upload.single('resume'), async(req, res) => {
 });
 
 
-app.get('/search', (req, res) => {
-  const keywords = req.query.keywords;
+app.get('/search', async (req, res) => {
+  const keywords = req.query.keywords as string
 
   if (!keywords) {
     return res.status(400).json({ error: 'Keywords is required' });
   }
 
-   
-  res.json({ keywords: keywords });
+  const result = await searchKeywords(keywords)
+
+  // https://www.youtube.com/watch?v=szfUbzsKvtE
+  res.json(result);
 });
 
 

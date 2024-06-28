@@ -18,7 +18,7 @@ Note: We will always do file processing, and other “heavy computation” tasks
 - [x] Users upload their resumes to express (1 or more).
 - [x] Express converts resumes to text.
 - [x] Express sends text to Supabase Database.
-- [ ] Admin can write a keyword, and all resumes with that keyword will be returned in a list.
+- [x] Admin can write a keyword, and all resumes with that keyword will be returned in a list.
 - [ ] Ensure tables have appropriate RLS policies.
 
 Other: 

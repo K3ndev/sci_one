@@ -44,7 +44,7 @@ from
 GRANT INSERT, UPDATE, DELETE, SELECT ON ALL TABLES IN SCHEMA public TO admin;
 
 
----
+--- policy
 
 alter policy "Enable ALL for users admin"
 on "public"."todos"
@@ -54,3 +54,13 @@ using (
    FROM "user"
   WHERE (("user".id = ( SELECT auth.uid() AS uid)) AND ("user".role = 'admin'::text))))
 );
+
+--- full text search
+
+SELECT text, file_name
+FROM resume
+WHERE to_tsvector(text) @@ to_tsquery('javascript');
+
+SELECT text, file_name
+FROM resume
+WHERE to_tsvector(text || ' ' || file_name) @@ to_tsquery('kenneth');

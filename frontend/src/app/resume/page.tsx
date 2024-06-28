@@ -5,6 +5,7 @@ import React, { ChangeEvent, useState, useRef } from "react";
 export default function Resume() {
   const [file, setFile] = useState<File | null>(null);
   const keywordsRef = useRef<HTMLInputElement>(null)
+  const [result, setResult] = useState([])
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -53,7 +54,7 @@ export default function Resume() {
         throw new Error('error');
       }
       const data = await response.json();
-      console.log(data)
+      setResult(data)
       
     } catch (error) {
       console.error('error', error);
@@ -72,6 +73,10 @@ export default function Resume() {
       <div>
         <input type="text" ref={keywordsRef}/>
         <button onClick={handleSearch}>search keywords</button>
+      </div>
+
+      <div>
+        <pre>{JSON.stringify(result, null, 2)}</pre>
       </div>
     </div>
   );
