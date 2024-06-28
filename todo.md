@@ -2,11 +2,11 @@
 - [x] Crud
     - create, read, update, delete
 - [x] login
-- [ ] user role (admin, member)
+- [x] user role (admin, member)
     - An admin can CRUD todos.
     - A member can read only.
 - [x] Ensure routes are protected on API.
-- [ ] Ensure tables have appropriate RLS policies.
+- [x] Ensure tables have appropriate RLS policies.
 
 ## Section 2: Nextjs, Supabase
 - [ ] Populate todolist with 10,000 fake data todo’s.
