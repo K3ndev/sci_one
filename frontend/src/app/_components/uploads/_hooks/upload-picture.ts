@@ -13,7 +13,7 @@ export const uploadImage = async ({ user_id, file }: { user_id: string,file: Fil
         const { error: errInsert } = await supabase
         .from('user')
         .update({ "avatar_url": data?.fullPath })
-        .eq( "id", "2c4fee9b-b535-4dd8-97d1-d56717e35f13")
+        .eq( "id", user_id)
         .select()
 
     } catch (error){
