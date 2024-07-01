@@ -1,6 +1,7 @@
 "use client";
 // temp use client
 import React, { ChangeEvent, useState, useRef } from "react";
+import { createClient } from "@/utils/supabase/cleint";
 
 export default function Resume() {
   const [file, setFile] = useState<File | null>(null);
@@ -13,11 +14,14 @@ export default function Resume() {
     }
   };
 
-  const onClickHandler = () => {
+  const onClickHandler = async() => {
     if (!file) {
       alert("Please select a file.");
       return;
     }
+
+    const supabase = createClient();
+    const currentSession = (await supabase.auth.getSession()).data.session
 
     const formData = new FormData();
     formData.append("resume", file);
@@ -25,6 +29,9 @@ export default function Resume() {
     fetch("http://localhost:4000/api/upload", {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${currentSession?.access_token}`,
+      },
     })
       .then((response) => {
         if (response.ok) {
@@ -48,8 +55,15 @@ export default function Resume() {
       return;
     }
 
+    const supabase = createClient();
+    const currentSession = (await supabase.auth.getSession()).data.session
+
     try {
-      const response = await fetch(`http://localhost:4000/search?keywords=${keywords}`);
+      const response = await fetch(`http://localhost:4000/search?keywords=${keywords}`, {
+        headers: {
+          Authorization: `Bearer ${currentSession?.access_token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error('error');
       }

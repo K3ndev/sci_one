@@ -7,8 +7,6 @@ export default function PaginationButton ({searchParams, todos} : {searchParams:
     const router = useRouter();
     const [page, setPage] = useState<number>(0)
 
-    console.log(todos?.length)
-
     const next = () => {
 
         if(todos && todos?.length <= 1){

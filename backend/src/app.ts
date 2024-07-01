@@ -57,13 +57,19 @@ app.post('/api/upload', upload.single('resume'), async(req, res) => {
       throw new Error('error');
     }
 
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      res.status(401).json({ error: 'Unauthorized: Missing Authorization header' });
+      return;
+    }
+
     const filePath = req.file.path;
     const dataBuffer = fs.readFileSync(filePath);
     const pdfData = await pdf(dataBuffer)
 
     const foundKeywords = findKeywords(pdfData.text, keywords).join(' ')
 
-    addResume({text: foundKeywords, filePath})
+    addResume({text: foundKeywords, filePath, authHeader})
 
 
     res.send('Upload successful');
@@ -81,7 +87,13 @@ app.get('/search', async (req, res) => {
     return res.status(400).json({ error: 'Keywords is required' });
   }
 
-  const result = await searchKeywords(keywords)
+  const authHeader = req.headers['authorization'];
+  if (!authHeader) {
+    res.status(401).json({ error: 'Unauthorized: Missing Authorization header' });
+    return;
+  }
+
+  const result = await searchKeywords(keywords, authHeader)
 
   // https://www.youtube.com/watch?v=szfUbzsKvtE
   res.json(result);
