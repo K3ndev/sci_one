@@ -57,5 +57,7 @@ export const searchKeywords = async(query: string, authHeader: string) => {
         .select('text, file_name')
         .textSearch('text', query)
 
+        // you can also use like query <sub>string 
+
     return data
 }

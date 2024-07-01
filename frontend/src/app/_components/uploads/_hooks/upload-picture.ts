@@ -10,11 +10,11 @@ export const uploadImage = async ({ user_id, file }: { user_id: string,file: Fil
         .from('profile_picture')
         .upload("public/" + user_id, file, { contentType: file.type, upsert: true})
 
-        const { error: errInsert } = await supabase
-        .from('user')
-        .update({ "avatar_url": data?.fullPath })
-        .eq( "id", user_id)
-        .select()
+        // const { error: errInsert } = await supabase
+        // .from('user')
+        // .update({ "avatar_url": data?.fullPath })
+        // .eq( "id", user_id)
+        // .select()
 
     } catch (error){
         console.error("Error uploading image:", error);

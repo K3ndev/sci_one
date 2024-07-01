@@ -21,7 +21,8 @@ export default  function Nav ({email, id}: {email: string | undefined, id : stri
     return (    
         <nav> 
             <p>Account: {currentUser.email}</p>
-            <img src={data.publicUrl} alt="avatar" width={100} height={100}/>
+            {/* append id to rerender the component*/}
+            <img src={`${data.publicUrl}`} alt="avatar" width={100} height={100}/>
             <p>uuid: {currentUser.id}</p>
             <Upload />
             <SignOutButton />

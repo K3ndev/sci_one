@@ -52,7 +52,7 @@ to public
 using (
   (EXISTS ( SELECT 1
    FROM "user"
-  WHERE (("user".id = ( SELECT auth.uid() AS uid)) AND ("user".role = 'admin'::text))))
+  WHERE (("user".id = auth.uid()) AND ("user".role = 'admin'))))
 );
 
 --- full text search
