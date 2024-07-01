@@ -40,7 +40,8 @@ export default function TodoItem({ isCheck, id, todo, user_id, searchParams }: {
       {editMode ? (
         <input type="text" value={editedTodo} onChange={handleInputChange} />
       ) : (
-        <p>{todo}, id: {user_id}</p>
+        // 
+        <p>{todo}</p>
       )}
       {editMode ? (
         <>

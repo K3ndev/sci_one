@@ -19,7 +19,7 @@ Note: We will always do file processing, and other “heavy computation” tasks
 - [x] Express converts resumes to text.
 - [x] Express sends text to Supabase Database.
 - [x] Admin can write a keyword, and all resumes with that keyword will be returned in a list.
-- [ ] Ensure tables have appropriate RLS policies.
+- [x] Ensure tables have appropriate RLS policies.
 
 Other: 
 - [x] validation for form when signup
@@ -37,3 +37,15 @@ https://github.com/orgs/supabase/discussions/13368
 ## Question 
 1. how to pass auth header from epxress to supabase
 2. does using supabase in client component expose env variable? (no)
+
+
+[x] Onboarding Evaluation (50 min) 
+other
+[x] fix: added fn to make the input empty (30min)
+[x] fix: upload avatar invalid id (30min)
+[x] Ensure tables have appropriate RLS policies to section 3 (2 hours)
+   - [x] get cookies and pass from frontend to backend 
+
+https://github.com/K3ndev/sci_one/commits/main/
+
+

@@ -36,7 +36,7 @@ export default async function Home({
         <ul>
           {todos?.map((item, index: number) => {
             return (
-              <li key={+index + +item.id} className="mb-1 flex gap-2">
+              <li key={`${index}${item.id}`} className="mb-1 flex gap-2">
                 <TodoItem
                   id={item.id}
                   isCheck={item.isCheck}

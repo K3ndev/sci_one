@@ -11,9 +11,10 @@ const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
 export const addResume = async({text, filePath, authHeader}: {text: string, filePath: string, authHeader: string}) => {
+    let token = authHeader.replace(/^Bearer\s+/, '');
 
-    // await supabase.auth.setSession({access_token: authHeader, refresh_token: 'd'})
-    // const currentSession = (await supabase.auth.getSession()).data.session
+    await supabase.auth.setSession({access_token: token, refresh_token: token})
+    console.log(await supabase.auth.getUser())
 
     // check if the resume is exist
     const { data: existingResumes, error: queryError } = await supabase
@@ -46,7 +47,8 @@ export const addResume = async({text, filePath, authHeader}: {text: string, file
         .select()
 
     if (error){
-        console.log(error)
+        // console.log(error)
+        throw error
     }
 } 
 
