@@ -32,3 +32,8 @@ Other:
 ## trigger functions:
 https://supabase.com/docs/guides/database/functions?queryGroups=language&language=js
 https://github.com/orgs/supabase/discussions/13368
+
+
+## Question 
+1. how to pass auth header from epxress to supabase
+2. does using supabase in client component expose env variable? (no)
